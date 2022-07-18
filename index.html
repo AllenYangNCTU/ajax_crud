@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>學生資料管理系統</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <!---匯入要使用的函式庫--->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+<style>
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  table{
+    border: 1px solid black;
+    display: inline-block;
+  }
+  td{
+    border: 1px solid black;
+    /* display: inline-block;
+    margin-left: 5px; */
+  }
+a{
+  color:white;
+}
+a:hover{
+  color:purple;
+}
+.delete_btn{
+margin: 5px;
+}
+  
+</style>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <h1 class="header">學生資料管理系統</h1>
+
+<div  type="button" class="btn btn-primary" onclick="loadForm()">
+新增學生
+</div>
+
+
+
+
+<div id="addForm">
+
+<!-- <form method="post">
+  <p>班級<input type="number" name="classroom" id="classroom"></p>
+  <p>座號<input type="number" name="seat_num" id="seat_num"></p>
+  <p>姓名<input type="text" name="name" id="name"></p>
+  <p>生日<input type="date" name="birthday" id="birthday"></p> -->
+  <!-- <p><input type="button" value="new" onclick="create()"></p> -->
+  <!-- <p><button type="button" class="btn btn-success" onclick="create()">New</button></p>
+</form> -->
+<h2 style="text-align:center;">新增資料</h2>
+<form method="post">
+
+  <div class="form-group">
+    <label for="classroom">班級</label>
+    <input type="number" class="form-control" placeholder="班級" id="classroom">
+  </div>
+
+  <div class="form-group">
+    <label for="seat_num">座號</label>
+    <input type="number" class="form-control" placeholder="座號" id="seat_num">
+  </div>
+
+  <div class="form-group">
+    <label for="classroom">姓名</label>
+    <input type="text" class="form-control" placeholder="姓名" id="name">
+  </div>
+
+  <div class="form-group">
+    <label for="birthday">生日</label>
+    <input type="date" class="form-control" placeholder="生日" id="birthday">
+  </div>
+  
+  <button type="button" class="btn btn-primary" onclick="create()">New</button>
+
+</form>
+<br><br>
+<!-- <form method="post">
+  <p>班級<input value="" type="number" name="classroom" id="eclassroom"></p>
+  <p>座號<input value="" type="number" name="seat_num" id="eseat_num"></p>
+  <p>姓名<input value="" type="text" name="name" id="ename"></p>
+  <p>生日<input value="" type="date" name="birthday" id="ebirthday"></p> -->
+  <!-- <p><input type="button" value="new" onclick="create()"></p> -->
+  <!-- <p>
+    <input type="hidden" name="id" id="student_id">
+    <button type="button" class="btn btn-success" onclick="update()">Edit</button></p>
+</form> -->
+
+<h2 style="text-align:center;">編輯資料</h2>
+<form method="post">
+
+  <div class="form-group">
+    <label for="classroom">班級</label>
+    <input type="number" class="form-control" placeholder="班級" id="eclassroom">
+  </div>
+
+  <div class="form-group">
+    <label for="seat_num">座號</label>
+    <input type="number" class="form-control" placeholder="座號" id="eseat_num">
+  </div>
+
+  <div class="form-group">
+    <label for="classroom">姓名</label>
+    <input type="text" class="form-control" placeholder="姓名" id="ename">
+  </div>
+
+  <div class="form-group">
+    <label for="birthday">生日</label>
+    <input type="date" class="form-control" placeholder="生日" id="ebirthday">
+  </div>
+  <input type="hidden" name="id" id="student_id">
+  <button type="button" class="btn btn-primary" onclick="create()">Edit</button>
+
+</form>
+<br><br>
+
+</div>
+<div id="edit"></div>
+  <nav class="navbar navbar-dark bg-dark">
+    <a href="Javascript:query(101)">101</a>
+    <a href="Javascript:query(102)">102</a>
+    <a href="Javascript:query(103)">103</a>
+    <a href="Javascript:query(104)">104</a>
+    <a href="Javascript:query(105)">105</a>
+    <a href="Javascript:query(106)">106</a>
+    <a href="Javascript:query(107)">107</a>
+    <a href="Javascript:query(108)">108</a>
+    <a href="Javascript:query(109)">109</a>
+    <a href="Javascript:query(110)">110</a>
+  </nav>
+    
+  <div id="list" class="container">
+    </div>
+
+  <!-- <table id="list"></table> -->
+</body>
+</html>
+<script>
+/************************************
+* 1.考慮觸發行為的事件
+* 2.建立監聽行為
+* 3.考慮是否需要代入參數
+* 4.是否會有回傳值？回傳值的功用及處理？
+* 5.是否需要更新畫面內容？更新畫面的方法？
+************************************/
+// query(102);
+
+function loadForm(type){
+  $("#studentForm").load("./form/student_form.php",{type})
+  
+}
+
+//新增資料的函式
+function create(){
+let form = {
+  "classroom": $("#classroom").val(),
+  "seat_num": $("#seat_num").val(),
+  "name": $("#name").val(),
+  "birthday": $("#birthday").val()
+}
+$.post("./api/insert.php", form, (res) =>{
+  if(res){
+    alert("success!");
+    query(form.classroom);
+  }else{
+    alert("error!");
+  }
+  console.log(res);
+})
+}
+
+//查詢資料的函式
+function query(class_name){
+$.get("api/query.php", {class_name}, (students)=>{
+  students = JSON.parse(students)
+  let tr="";
+  students.forEach((val,idx) => {
+    console.log(idx,val);
+    // tr = tr + `<tr><td>${val.name}</td><td>${val.birthday}</td><td>${val.address}</td></tr>`;
+    tr = tr + `<div class="row"><div class="col-sm">${val.name}</div><div class="col-sm">${val.birthday}</div><div class="col-sm">${val.address}</div><div class="col-sm"><button type="button" class="btn btn-danger delete_btn" onclick="del(${val.id})">Delete</button></div><div class="col-sm"><button type="button" class="btn btn-info delete_btn" onclick="edit(${val.id})">Edit</button></div></div>`;
+  })
+  // console.log(students);
+  $("#list").html(tr);
+})
+}
+
+function edit(id){
+  $.get("./api/show.php", {id}, (student) =>{
+
+    student = JSON.parse(student);
+    $("#eclassroom").val(student.classroom);
+    $("#eseat_num").val(student.seat_num);
+    $("#ename").val(student.name);
+    $("#ebirthday").val(student.birthday);
+    $("#student_id").val(student.id);
+  }
+  )
+}
+
+
+
+//編輯資料的函式
+function update(){
+  let form = {
+  "classroom": $("#eclassroom").val(),
+  "seat_num": $("#eseat_num").val(),
+  "name": $("#ename").val(),
+  "birthday": $("#ebirthday").val(),
+  "id": $("#student_id").val()
+}
+$.post("./api/update.php", form, () =>{
+  $("#eclassroom").val(""),
+  $("#eseat_num").val(""),
+  $("#ename").val(""),
+  $("#ebirthday").val(""),
+  $("#student_id").val("")
+  query(form.classroom);
+})
+}
+
+//刪除資料的函式
+function del(id){
+  $.post("./api/delete.php", {id}, (res) =>{
+    if(res){
+    alert("success!");
+    // query(form.classroom);
+  }else{
+    alert("error!");
+  }
+  console.log(res);
+  })
+}
+
+</script>
